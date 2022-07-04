@@ -1,0 +1,34 @@
+/* 
+#f7d6e0 lighter pink
+#f2b5d4 dark pink
+#b2f7ef lighter blue
+#7bdff2 dark blue
+#eff7f6 base
+*/
+
+.infographic__textarea {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 35%;
+}
+
+.infographic__heading {
+    font-size: 2rem;
+    font-weight: 1000;
+    margin-bottom: 2rem;
+}
+
+.infographic__subheading {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.infographic__button {
+    background-color: #b2f7ef;
+    text-decoration: none;
+    width: 30%;
+    text-align: center;
+    border-radius: 500px;
+}
