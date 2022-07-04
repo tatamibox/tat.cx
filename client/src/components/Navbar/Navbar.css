@@ -1,3 +1,40 @@
+/* color pallete (coolors.co) */
+/* 
+#f7d6e0 lighter pink
+#f2b5d4 dark pink
+#b2f7ef lighter blue
+#7bdff2 dark blue
+#eff7f6 base
+*/
+
 .logo {
     height: 5rem;
+}
+
+a {
+    text-decoration: none;
+    color: black !important;
+}
+
+.farRight {
+    margin-right: 3rem !important;
+    background-color: #f7d6e0;
+    border-radius: 500px;
+    transition: background-color 190ms ease-in-out;
+}
+
+.farRight:hover {
+    background-color: #f2b5d4;
+}
+
+.brandName {
+    margin-left: 3rem;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
+    font-size: 2rem !important;
+}
+
+.nav-item {
+    margin-left: 3rem;
+    font-weight: 900;
 }
