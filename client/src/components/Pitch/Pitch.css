@@ -1,0 +1,10 @@
+.pitch__container {
+    background-color: white;
+}
+
+.pitch__question {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    font-size: 2rem;
+    font-weight: bold;
+}

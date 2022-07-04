@@ -5,7 +5,7 @@ const Navbar = () => {
 
 
     return (
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top">
     <div class="container-fluid d-flex align-items-center my-2">
         <a class="navbar-brand brandName" href="#">tat.cx</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

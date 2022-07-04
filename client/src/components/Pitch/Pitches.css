@@ -1,0 +1,25 @@
+.pitch__card {
+    width: 20%;
+}
+
+.pitch__name {
+    font-weight: 600;
+}
+
+.pitch__img {
+    width: 5rem;
+    height: 5rem;
+    
+    
+}
+
+.image__container {
+    background-color: #f7d6e0;
+    border-radius: 50%;
+    width: 8rem;
+    height: 8rem;
+}
+
+.pitch__description {
+    width: 50%;
+}

@@ -31,4 +31,9 @@
     width: 30%;
     text-align: center;
     border-radius: 500px;
+    transition: background-color 190ms ease-in-out;
+}
+
+.infographic__button:hover {
+   background-color: #7bdff2;
 }
