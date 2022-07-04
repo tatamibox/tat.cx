@@ -1,38 +1,12 @@
-.App {
-  text-align: center;
-}
+/* color pallete (coolors.co) */
+/* 
+#f7d6e0 lighter pink
+#f2b5d4 dark pink
+#b2f7ef lighter blue
+#7bdff2 dark blue
+#eff7f6 base
+*/
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  background-color: #eff7f6 !important;
 }
