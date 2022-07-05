@@ -7,6 +7,7 @@ const ejs = require('ejs');
 require('dotenv').config();
 const User = require('./models/User');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 
 const corsOptions ={
     credentials:true,            //access-control-allow-credentials:true
@@ -30,9 +31,10 @@ app.get('/signup', (req, res) => {
     res.render('post')
 })
 app.post('/signup', async (req, res) => {
-    const newUser = new User(req.body);
-    await newUser.save();
-    res.redirect('/signup')
+    const { fullName, username, password} = req.body;
+    const hash = await bcrypt.hash(password, 10);
+    const newUser = new User({fullName: fullName, username: username, password: hash});
+    newUser.save();
 
     
   })

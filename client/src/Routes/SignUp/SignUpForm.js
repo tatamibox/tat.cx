@@ -31,13 +31,9 @@ const SignUpForm = () => {
       fullName: enteredFullName,
       password: enteredPassword,
       username: enteredUsername
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
     })
       .then(response => {
-        console.log(response.data);
+        console.log('successful');
       });
     // axios.post(url, user)
   }
