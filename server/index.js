@@ -8,6 +8,8 @@ require('dotenv').config();
 const User = require('./models/User');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser')
 
 const corsOptions ={
     credentials:true,            //access-control-allow-credentials:true
@@ -17,6 +19,7 @@ app.use(cors(corsOptions));
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.set('views', path.join(__dirname, 'views'));
+app.use(cookieParser());
 
 
 mongoose.connect(process.env.MONGO_URI)
@@ -35,8 +38,27 @@ app.post('/signup', async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
     const newUser = new User({fullName: fullName, username: username, password: hash});
     newUser.save();
-    
   })
+
+  //login
+  app.post('/login', async (req, res) => {
+    const { username , password } = req.body;
+    const currentUser = await User.findOne({username: username});
+    await bcrypt.compare(req.body.password, currentUser.password, (err, res) => {
+        if (err) {
+            return res.status(403).json({
+                error: "Invalid login"
+            });
+        };   
+        if (res) {
+            const token = jwt.sign({currentUser}, process.env.MY_SECRET, {expiresIn: "1h"});
+            console.log(token)
+
+        }
+               
+    })
+})
+
 
 app.listen(3001, () => {
     console.log(`Server listening on 3001`);

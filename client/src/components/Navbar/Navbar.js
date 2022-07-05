@@ -23,7 +23,7 @@ const Navbar = () => {
                     <a class="nav-link" href="/signup">Sign up</a>
                 </li>
                 <li class="nav-item farRight py-1 px-3">
-                    <a class="nav-link" href="#">Log in</a>
+                    <a class="nav-link" href="/login">Log in</a>
                 </li>
             </ul>
         </div>
