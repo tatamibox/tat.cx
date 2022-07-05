@@ -1,5 +1,6 @@
 import './SignUpForm.css'
-const SignUpForm = () => {
+const axios = require('axios');
+
 return (
     <div class="form__container">
     <form class="form-inline newUserForm" action="/sex" method="POST">
@@ -29,6 +30,6 @@ return (
 </form>
         </div>
 )
-}
+
 
 export default SignUpForm;
