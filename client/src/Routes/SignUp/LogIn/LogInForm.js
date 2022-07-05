@@ -1,26 +1,22 @@
 import {React, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LogInForm.css'
 const axios = require('axios');
 
 const LogInForm = () => {
-
+const navigate = useNavigate();
     const url = 'http://localhost:3001/login';
 
 const logInHandler = (e) => {
     e.preventDefault();
 
-    axios.post(url, {
-        username: enteredUsername,
-        password: enteredPassword
-      })
-        .then(response => {
-          console.log('successful');
-        });
-      // axios.post(url, user)
+    axios.post(url, {username: enteredUsername, password: enteredPassword})
+    .then((res) => {
+      console.log(res)
+        localStorage.setItem('token', res.data.data)
+        navigate('/')
+    })
     }
-
-
-
   // username listener
   const [enteredUsername, setEnteredUsername] = useState('');
   const usernameChangeHandler = (e) => {
