@@ -41,3 +41,23 @@ a {
     margin-left: 3rem;
     font-weight: 900;
 }
+
+.userProfPic {
+    height: 3rem;
+}
+
+.navbar__ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar__main {
+        display: flex;
+        align-items: right;
+        justify-content: right;
+        margin-right: 1rem;
+    }
+    }
+    

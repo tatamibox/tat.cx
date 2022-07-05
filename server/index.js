@@ -51,7 +51,7 @@ app.post('/signup', async (req, res) => {
             const token = jwt.sign({currentUser}, process.env.MY_SECRET, {expiresIn: '30d'});
             res.json({data: token});
         } else if(err) {
-            res.status(402).json({message: 'INVALID PASSWORD'})
+            res.json({message: 'INVALID PASSWORD'})
         }
     });
 
