@@ -4,7 +4,7 @@ const axios = require('axios');
 const mongoose = require('mongoose')
 const path = require('path')
 require('dotenv').config();
-const Test = require('./models/Test');
+const User = require('./models/User');
 
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
