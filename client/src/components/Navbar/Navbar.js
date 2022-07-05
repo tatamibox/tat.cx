@@ -20,7 +20,7 @@ const Navbar = () => {
                     <a class="nav-link" href="#">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sign up</a>
+                    <a class="nav-link" href="/signup">Sign up</a>
                 </li>
                 <li class="nav-item farRight py-1 px-3">
                     <a class="nav-link" href="#">Log in</a>
