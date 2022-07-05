@@ -9,7 +9,8 @@ const User = require('./models/User');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const catchAsync = require('./utils/catchAsync')
 
 const corsOptions ={
     credentials:true,            //access-control-allow-credentials:true
@@ -41,23 +42,21 @@ app.post('/signup', async (req, res) => {
   })
 
   //login
-  app.post('/login', async (req, res) => {
+  app.post('/login', catchAsync(async (req, res) => {
     const { username , password } = req.body;
     const currentUser = await User.findOne({username: username});
-    await bcrypt.compare(req.body.password, currentUser.password, (err, res) => {
-        if (err) {
-            return res.status(403).json({
-                error: "Invalid login"
-            });
-        };   
-        if (res) {
-            const token = jwt.sign({currentUser}, process.env.MY_SECRET, {expiresIn: "1h"});
-            console.log(token)
-
+    console.log(currentUser)
+    await bcrypt.compare(password, currentUser.password, function(err, isValid) {
+        if (isValid) {
+            const token = jwt.sign({currentUser}, process.env.MY_SECRET, {expiresIn: '30d'});
+            res.json({data: token});
+        } else if(err) {
+            res.status(402).json({message: 'INVALID PASSWORD'})
         }
-               
-    })
-})
+    });
+
+
+}))
 
 
 app.listen(3001, () => {
