@@ -63,11 +63,17 @@ app.post('/userinfo', catchAsync(async (req, res) => {
     const decoded = await jwt.verify(token, process.env.MY_SECRET)
     res.json({decoded});
 }))
-
 app.post('/getUserInfo', catchAsync(async (req, res) => {
     const { username } = req.body;
     const currentUser = await User.findOne({username: username});
     res.json({username: currentUser.username, fullName: currentUser.fullName});
+}))
+
+app.post('/checkUserToken', catchAsync(async (req, res) => {
+    const { data } = req.body;
+    const decoded = await jwt.verify(data, process.env.MY_SECRET)
+    res.json(decoded);
+    
 
 }))
 app.listen(3001, () => {

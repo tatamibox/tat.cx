@@ -4,6 +4,7 @@ import Infographic from './components/Infographic/Infographic'
 import Pitch from './components/Pitch/Pitch';
 import UserPage from './Routes/UserPage/UserPage';
 import Home from './Routes/Home';
+import EditUserPage from './Routes/UserPage/Edit/EditUserPage';
 import CreateLink from './Routes/CreateLink/CreateLink';
 import SignUp from './Routes/SignUp/SignUp';
 import LogIn from './Routes/SignUp/LogIn/LogIn';
@@ -22,6 +23,8 @@ function App() {
     <Route exact path="/signup" element={<SignUp />} />
     <Route exact path="/login" element={<LogIn />} />
     <Route path="/:username" element={<UserPage />} />
+    <Route path="/:username/edit" element={<EditUserPage />} />
+    
     </Routes>
     </Router>
       
