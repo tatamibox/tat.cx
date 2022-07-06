@@ -8,11 +8,13 @@ const axios = require('axios');
 
 const LINav = () => {
 
+    
     const logOut = () => {
         window.localStorage.setItem('token', '');
         Navigate('/')
     }
 
+    const [currentImage, setCurrentImage] = useState('')
     const [currentUsername, setCurrentUsername] = useState('');
 
 
@@ -22,6 +24,11 @@ const LINav = () => {
     axios.post(url, {token: token})
     .then((res) => {
      setCurrentUsername(res.data.decoded.currentUser.username)
+     if (!res.data.decoded.currentUser.image) {
+        setCurrentImage(profpic)
+    } else {
+    setCurrentImage(res.data.decoded.currentUser.image);
+    }
       
     })
 
@@ -47,7 +54,7 @@ const LINav = () => {
                     <a class="nav-link" href="/">About</a>
                 </li>
                 <li class="nav-item d-flex flex-row align-items-center">
-                    <a class="nav-link" href="/signup"><img src={profpic} className="userProfPic"></img></a><div>{currentUsername}</div>
+                    <a class="nav-link" href={currentUsername}><img src={currentImage} className="userProfPic"></img></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/" onClick={logOut}>Logout</a>
