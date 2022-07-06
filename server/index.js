@@ -66,16 +66,29 @@ app.post('/userinfo', catchAsync(async (req, res) => {
 app.post('/getUserInfo', catchAsync(async (req, res) => {
     const { username } = req.body;
     const currentUser = await User.findOne({username: username});
-    res.json({username: currentUser.username, fullName: currentUser.fullName});
+    res.json({username: currentUser.username, fullName: currentUser.fullName, image: currentUser.image});
 }))
 
 app.post('/checkUserToken', catchAsync(async (req, res) => {
     const { data } = req.body;
     const decoded = await jwt.verify(data, process.env.MY_SECRET)
     res.json(decoded);
-    
-
 }))
+
+app.put('/editUserProfile', catchAsync(async(req, res) => {
+    const { token, username, fullName, image } = req.body;
+    const decoded = await jwt.verify(token, process.env.MY_SECRET)
+    if (decoded.currentUser.username.toString() === username.toString()) {
+        const user = await User.findOne({username: username});
+        const id = user._id;
+        await User.findByIdAndUpdate(id, {fullName: fullName, image: image});
+    } else {
+        res.status(500).send('Invalid user')
+    }
+    
+}))
+
+
 app.listen(3001, () => {
     console.log(`Server listening on 3001`);
   });
