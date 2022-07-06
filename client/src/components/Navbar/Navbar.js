@@ -4,12 +4,14 @@ import './Navbar.css'
 import {React, useState} from 'react';
 import NLINav from './NLINav';
 import LINav from './LINav';
-
+const axios = require('axios')
 
 
 const Navbar = () => {
 
-const user = window.localStorage.getItem('token')
+
+
+let user = '1';
 
 if (user !== '') {
    return (

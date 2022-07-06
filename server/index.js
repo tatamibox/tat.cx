@@ -58,6 +58,11 @@ app.post('/signup', async (req, res) => {
 
 }))
 
+app.post('/userinfo', catchAsync(async (req, res) => {
+    const { token } = req.body;
+    const decoded = await jwt.verify(token, process.env.MY_SECRET)
+    res.json({decoded});
+}))
 
 app.listen(3001, () => {
     console.log(`Server listening on 3001`);

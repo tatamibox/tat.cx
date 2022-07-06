@@ -1,7 +1,29 @@
 
 import './Navbar.css'
+import {React, useState} from 'react';
 import profpic from '../../assets/img/placeholder.png'
+const axios = require('axios');
+
+
 const LINav = () => {
+
+    const [currentUsername, setCurrentUsername] = useState('');
+
+
+
+    const url = 'http://localhost:3001/userinfo';
+    const token = window.localStorage.getItem('token');
+    axios.post(url, {token: token})
+    .then((res) => {
+     setCurrentUsername(res.data.decoded.currentUser.username)
+      
+    })
+
+    console.log(currentUsername)
+
+
+  
+
     return (
         <div>
         <nav class="navbar navbar-expand-lg navbar-light sticky-top">
@@ -18,8 +40,8 @@ const LINav = () => {
             <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/signup"><img src={profpic} className="userProfPic"></img></a>
+                <li class="nav-item d-flex flex-row align-items-center">
+                    <a class="nav-link" href="/signup"><img src={profpic} className="userProfPic"></img></a><div>{currentUsername}</div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/signup">Logout</a>
