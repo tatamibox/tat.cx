@@ -2,10 +2,16 @@
 import './Navbar.css'
 import {React, useState} from 'react';
 import profpic from '../../assets/img/placeholder.png'
+import { Navigate } from 'react-router-dom';
 const axios = require('axios');
 
 
 const LINav = () => {
+
+    const logOut = () => {
+        window.localStorage.setItem('token', '');
+        Navigate('/')
+    }
 
     const [currentUsername, setCurrentUsername] = useState('');
 
@@ -44,7 +50,7 @@ const LINav = () => {
                     <a class="nav-link" href="/signup"><img src={profpic} className="userProfPic"></img></a><div>{currentUsername}</div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/signup">Logout</a>
+                    <a class="nav-link" href="/" onClick={logOut}>Logout</a>
                 </li>
             </ul>
         </div>

@@ -11,7 +11,7 @@ const Navbar = () => {
 
 
 
-let user = '1';
+let user = window.localStorage.getItem('token');
 
 if (user !== '') {
    return (
