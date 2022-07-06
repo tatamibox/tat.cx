@@ -1,0 +1,22 @@
+.userPic {
+    height: 12rem;
+    width: 12rem;
+    border-radius: 50%;
+}
+
+.userFullName {
+    font-weight: bolder;
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.userName {
+    font-size: 0.8rem;
+    letter-spacing: 0.08rem;
+}
+@media only screen and (max-width: 768px) {
+    .userPic {
+        height: 9rem;
+        width: 9rem;
+    }
+}

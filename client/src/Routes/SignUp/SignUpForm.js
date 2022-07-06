@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
 import './SignUpForm.css'
+import { useNavigate } from 'react-router-dom';
 const axios = require('axios');
 const url = 'http://localhost:3001/signup';
 
-
 const SignUpForm = () => {
 
+  const navigate = useNavigate();
   // full name listener
   const [enteredFullName, setEnteredFullName] = useState('');
   const fullNameChangeHandler = (e) => {
     setEnteredFullName(e.target.value);
+
   }
 
   // username listener
@@ -24,6 +26,7 @@ const SignUpForm = () => {
     setEnteredPassword(e.target.value);
   }
   
+
   const submitHandler = (e) => {
     e.preventDefault();
     
@@ -32,10 +35,13 @@ const SignUpForm = () => {
       password: enteredPassword,
       username: enteredUsername
     })
+    navigate('/')
       .then(response => {
-        console.log('successful');
+        console.log(response);
+       
       });
     // axios.post(url, user)
+
   }
 
 return (

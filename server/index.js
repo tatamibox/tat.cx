@@ -64,6 +64,12 @@ app.post('/userinfo', catchAsync(async (req, res) => {
     res.json({decoded});
 }))
 
+app.post('/getUserInfo', catchAsync(async (req, res) => {
+    const { username } = req.body;
+    const currentUser = await User.findOne({username: username});
+    res.json({username: currentUser.username, fullName: currentUser.fullName});
+
+}))
 app.listen(3001, () => {
     console.log(`Server listening on 3001`);
   });

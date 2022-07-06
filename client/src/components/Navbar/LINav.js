@@ -44,7 +44,7 @@ const LINav = () => {
             </ul>
             <ul class="navbar-nav navbar__ul">
             <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="/">About</a>
                 </li>
                 <li class="nav-item d-flex flex-row align-items-center">
                     <a class="nav-link" href="/signup"><img src={profpic} className="userProfPic"></img></a><div>{currentUsername}</div>

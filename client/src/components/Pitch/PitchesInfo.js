@@ -8,7 +8,7 @@ const PitchesInfo = [
     },
     {
         name: 'Flexibility',
-        description: 'Capability of designing to your hearts content',
+        description: 'fgsfd546556',
         image: greypencil
     },
     {
