@@ -39,3 +39,13 @@
 
 }
 
+input {
+    border-radius: 8px;
+    padding: 0.4rem;
+    border: none;
+}
+
+.submitButton {
+    border-radius: 500px;
+    border: none;
+}

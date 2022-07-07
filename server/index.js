@@ -12,9 +12,9 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const catchAsync = require('./utils/catchAsync')
 
-const corsOptions ={
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
+const corsOptions = {
+    credentials: true,            //access-control-allow-credentials:true
+    optionSuccessStatus: 200
 }
 app.use(cors(corsOptions));
 app.set('view engine', 'ejs');
@@ -35,23 +35,23 @@ app.get('/signup', (req, res) => {
     res.render('post')
 })
 app.post('/signup', async (req, res) => {
-    const { fullName, username, password} = req.body;
+    const { fullName, username, password } = req.body;
     const hash = await bcrypt.hash(password, 10);
-    const newUser = new User({fullName: fullName, username: username, password: hash});
+    const newUser = new User({ fullName: fullName, username: username, password: hash });
     newUser.save();
-  })
+})
 
-  //login
-  app.post('/login', catchAsync(async (req, res) => {
-    const { username , password } = req.body;
-    const currentUser = await User.findOne({username: username});
+//login
+app.post('/login', catchAsync(async (req, res) => {
+    const { username, password } = req.body;
+    const currentUser = await User.findOne({ username: username });
     console.log(currentUser)
-    await bcrypt.compare(password, currentUser.password, function(err, isValid) {
+    await bcrypt.compare(password, currentUser.password, function (err, isValid) {
         if (isValid) {
-            const token = jwt.sign({currentUser}, process.env.MY_SECRET, {expiresIn: '30d'});
-            res.json({data: token});
-        } else if(err) {
-            res.json({message: 'INVALID PASSWORD'})
+            const token = jwt.sign({ currentUser }, process.env.MY_SECRET, { expiresIn: '30d' });
+            res.json({ data: token });
+        } else if (err) {
+            res.json({ message: 'INVALID PASSWORD' })
         }
     });
 
@@ -61,12 +61,12 @@ app.post('/signup', async (req, res) => {
 app.post('/userinfo', catchAsync(async (req, res) => {
     const { token } = req.body;
     const decoded = await jwt.verify(token, process.env.MY_SECRET)
-    res.json({decoded});
+    res.json({ decoded });
 }))
 app.post('/getUserInfo', catchAsync(async (req, res) => {
     const { username } = req.body;
-    const currentUser = await User.findOne({username: username});
-    res.json({username: currentUser.username, fullName: currentUser.fullName, image: currentUser.image});
+    const currentUser = await User.findOne({ username: username });
+    res.json({ discord: currentUser.discord, username: currentUser.username, fullName: currentUser.fullName, image: currentUser.image });
 }))
 
 app.post('/checkUserToken', catchAsync(async (req, res) => {
@@ -75,22 +75,21 @@ app.post('/checkUserToken', catchAsync(async (req, res) => {
     res.json(decoded);
 }))
 
-app.put('/editUserProfile', catchAsync(async(req, res) => {
-    const { token, username, fullName, image } = req.body;
+app.put('/editUserProfile', catchAsync(async (req, res) => {
+    const { token, username, fullName, image, discord } = req.body;
     const decoded = await jwt.verify(token, process.env.MY_SECRET)
     if (decoded.currentUser.username.toString() === username.toString()) {
-        const user = await User.findOne({username: username});
+        const user = await User.findOne({ username: username });
         const id = user._id;
-        await User.findByIdAndUpdate(id, {fullName: fullName, image: image});
+        await User.findByIdAndUpdate(id, { fullName: fullName, image: image, discord: discord });
     } else {
         res.status(500).send('Invalid user')
     }
-    
+
 }))
 
 
 app.listen(3001, () => {
     console.log(`Server listening on 3001`);
-  });
+});
 
- 

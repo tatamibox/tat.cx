@@ -14,9 +14,33 @@
     font-size: 0.8rem;
     letter-spacing: 0.08rem;
 }
+
 @media only screen and (max-width: 768px) {
     .userPic {
         height: 9rem;
         width: 9rem;
     }
+}
+
+
+.socials__bar {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.5rem;
+    gap: 1rem;
+
+}
+
+.socials__bar li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shadow {
+    border-radius: 500px !important;
+}
+
+.icon {
+    margin-right: 1rem;
 }
