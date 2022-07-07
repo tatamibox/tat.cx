@@ -14,6 +14,27 @@ const EditUserPage = () => {
     const [currentImage, setCurrentImage] = useState('');
     const [currentDiscord, setCurrentDiscord] = useState('');
     const { username } = useParams();
+    const [currentBgColor, setCurrentBgColor] = useState('')
+
+    const [newBackgroundColor, setNewBackgroundColor] = useState('')
+    const backgroundColorHandler = (e) => {
+        setNewBackgroundColor(e.target.value)
+    }
+
+    const [newDiscord, setNewDiscord] = useState('')
+    const discordHandler = (e) => {
+        setNewDiscord(e.target.value)
+    }
+    const [newImage, setNewImage] = useState('')
+    const imageHandler = (e) => {
+        setNewImage(e.target.value);
+    }
+
+    const [newFullName, setNewFullName] = useState('')
+    const fullNameHandler = (e) => {
+        setNewFullName(e.target.value);
+    }
+
 
     const token = window.localStorage.getItem('token');
     const url = 'http://localhost:3001/checkUserToken';
@@ -34,6 +55,12 @@ const EditUserPage = () => {
 
         })
 
+    const changeBackground = () => {
+        if (!currentBgColor) {
+            document.body.style = 'background: #eff7f6;'
+        } else document.body.style = `background: ${currentBgColor} ;`
+
+    }
     const GetEditForm = () => {
         const url = 'http://localhost:3001/getUserInfo';
 
@@ -43,9 +70,13 @@ const EditUserPage = () => {
             username: username
         })
             .then(res => {
+                console.log(res)
+                if (!res.data.backgroundColor) { setCurrentBgColor('') }
+                else { setCurrentBgColor(res.data.backgroundColor) }
                 if (!res.data.discord) { setCurrentDiscord('') }
                 else { setCurrentDiscord(res.data.discord) }
                 setFullName(res.data.fullName);
+
                 if (!res.data.image) { setCurrentImage(placeholder) }
                 else {
                     setCurrentImage(res.data.image);
@@ -54,20 +85,6 @@ const EditUserPage = () => {
             .catch(err => {
                 setFullName('User does not currently exist')
             })
-
-    }
-    const [newDiscord, setNewDiscord] = useState('')
-    const discordHandler = (e) => {
-        setNewDiscord(e.target.value)
-    }
-    const [newImage, setNewImage] = useState('')
-    const imageHandler = (e) => {
-        setNewImage(e.target.value);
-    }
-
-    const [newFullName, setNewFullName] = useState('')
-    const fullNameHandler = (e) => {
-        setNewFullName(e.target.value);
     }
 
     const submitHandler = (e) => {
@@ -78,7 +95,8 @@ const EditUserPage = () => {
             username: username,
             image: newImage,
             fullName: newFullName,
-            discord: newDiscord
+            discord: newDiscord,
+            backgroundColor: newBackgroundColor
 
         })
         navigate(`/${username}`)
@@ -91,20 +109,26 @@ const EditUserPage = () => {
     }
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className="container d-flex flex-column align-items-center mt-5">
-                <img className="userPic" src={currentImage} alt="user profpic"></img>
-                <div className="d-flex flex-row">
-                    <input placeholder="New Image Link" className="my-3" name="image" onChange={imageHandler}></input>
+        <div>
+            {changeBackground()}
+            <form onSubmit={submitHandler}>
+                <div className="p-3">
+                    <label for='bgcolor'>Background color (solid / HEX value with #)</label>
+                    <input placeholder="# / color" className="my-3" name="image" id="bgColor" onChange={backgroundColorHandler}></input>
                 </div>
-                <input placeholder="Discord username" className="my-3" name="discord" onChange={discordHandler}></input>
-                <input placeholder={fullName} name="fullName" className="my-3" onChange={fullNameHandler}></input>
-                <div class="userName mt-3">@{username}</div>
-                <button type="submit" className="text-center mt-3 submitButton py-2 px-4">Submit</button>
-            </div>
+                <div className="container d-flex flex-column align-items-center mt-5">
+                    <img className="userPic" src={currentImage} alt="user profpic"></img>
+                    <div className="d-flex flex-row">
+                        <input placeholder="New Image Link" className="my-3" name="image" onChange={imageHandler}></input>
+                    </div>
+                    <input placeholder="Discord username" className="my-3" name="discord" onChange={discordHandler}></input>
+                    <input placeholder={fullName} name="fullName" className="my-3" onChange={fullNameHandler}></input>
+                    <div class="userName mt-3">@{username}</div>
+                    <button type="submit" className="text-center mt-3 submitButton py-2 px-4">Submit</button>
+                </div>
 
-        </form>
-
+            </form >
+        </div>
     )
 }
 

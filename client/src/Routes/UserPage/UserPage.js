@@ -13,12 +13,14 @@ const UserPage = () => {
     const [fullName, setFullName] = useState('');
     const [currentImage, setCurrentImage] = useState('');
     const [currentDiscord, setCurrentDiscord] = useState('');
+    const [backgroundColor, setBackgroundColor] = useState('');
 
     axios.post(url, {
         username: username
     })
         .then(res => {
             console.log(res)
+            setBackgroundColor(res.data.backgroundColor)
             setFullName(res.data.fullName);
             setCurrentDiscord(res.data.discord);
             if (!res.data.image) {
@@ -42,6 +44,10 @@ const UserPage = () => {
     }
 
     const changeBackground = () => {
+        if (!backgroundColor) {
+            document.body.style = 'background: #eff7f6;'
+        } else document.body.style = `background: ${backgroundColor} ;`
+
     }
     return (
 

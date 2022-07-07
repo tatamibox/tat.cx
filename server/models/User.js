@@ -16,7 +16,8 @@ const userSchema = new Schema({
         required: true
     },
     image: String,
-    discord: String
+    discord: String,
+    backgroundColor: String
 
 })
 
