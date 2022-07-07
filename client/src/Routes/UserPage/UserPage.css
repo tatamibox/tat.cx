@@ -35,6 +35,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 200ms all ease-in-out;
+}
+
+.socials__bar li:hover {
+    cursor: pointer;
+    margin-top: -1px;
+    height: 110%;
 }
 
 .shadow {

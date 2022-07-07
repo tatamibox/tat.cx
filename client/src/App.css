@@ -7,6 +7,6 @@
 #eff7f6 base
 */
 
-body {
-  background-color: #eff7f6;
+body .home {
+  background-color: #eff7f6 !important;
 }
