@@ -14,13 +14,12 @@ const EditUserPage = () => {
     const { username } = useParams();
 
 
-
-
-
     const [fullName, setFullName] = useState('')
     const [discord, setDiscord] = useState('')
     const [image, setImage] = useState('')
     const [bgColor, setBgColor] = useState('')
+
+
 
     //set default useState values for later reference
     const token = window.localStorage.getItem('token')
@@ -30,7 +29,6 @@ const EditUserPage = () => {
         .then(res => {
             console.log(res)
             setFullName(res.data.user.fullName)
-
             if (res.data.user.discord !== '') {
                 setDiscord(res.data.user.discord)
             }

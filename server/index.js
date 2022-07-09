@@ -86,7 +86,7 @@ app.put('/editUserProfile', catchAsync(async (req, res) => {
         const id = user._id;
         await User.findByIdAndUpdate(id, { fullName: fullName, image: image, discord: discord, backgroundColor: bgColor })
         res.json({ message: 'update success' })
-    } else res.status(500).send('Invalid user')
+    } else res.status(403).send('Invalid user. You do not have permission to edit this profile.')
 
 }))
 
