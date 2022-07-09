@@ -3,22 +3,22 @@ import greypencil from '../../assets/img/greypencil.png'
 const PitchesInfo = [
     {
         name: 'Responsive',
-        description: 'ASJhdsujiafhasdifha',
+        description: '',
         image: infographic
     },
     {
         name: 'Flexibility',
-        description: 'fgsfd546556',
+        description: '',
         image: greypencil
     },
     {
         name: 'Responsive',
-        description: 'ASJhdsujiafhasdifhasdjkfhj',
+        description: '',
         image: ''
     },
     {
         name: 'Responsive',
-        description: 'ASJhdsujiafhasdifhasdj',
+        description: '',
         image: ''
     }
 ];

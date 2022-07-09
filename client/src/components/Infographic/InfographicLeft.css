@@ -34,6 +34,24 @@
     transition: background-color 190ms ease-in-out;
 }
 
+.infographic__button__edit {
+    background-color: #edeba6;
+    text-decoration: none;
+    width: 30%;
+    text-align: center;
+    border-radius: 500px;
+    transition: background-color 190ms ease-in-out;
+}
+
+.infographic__button__edit:hover {
+    background-color: #e6e152;
+    text-decoration: none;
+    width: 30%;
+    text-align: center;
+    border-radius: 500px;
+    transition: background-color 190ms ease-in-out;
+}
+
 .infographic__button:hover {
-   background-color: #7bdff2;
+    background-color: #7bdff2;
 }

@@ -1,5 +1,6 @@
 .pitch__container {
     background-color: white;
+    width: 100%;
 }
 
 .pitch__question {
@@ -7,4 +8,12 @@
     padding-bottom: 4rem;
     font-size: 2rem;
     font-weight: bold;
+}
+
+@media screen and (max-width:768px) {
+    .pitch__collection {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
