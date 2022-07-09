@@ -61,7 +61,10 @@ app.post('/login', catchAsync(async (req, res) => {
 app.post('/userinfo', catchAsync(async (req, res) => {
     const { token } = req.body;
     const decoded = await jwt.verify(token, process.env.MY_SECRET)
-    res.json({ decoded });
+    const tempUser = decoded.currentUser._id;
+    const user = await User.findById(tempUser);
+    console.log(user)
+    res.json({ user });
 }))
 app.post('/getUserInfo', catchAsync(async (req, res) => {
     const { username } = req.body;
@@ -76,15 +79,14 @@ app.post('/checkUserToken', catchAsync(async (req, res) => {
 }))
 
 app.put('/editUserProfile', catchAsync(async (req, res) => {
-    const { token, username, fullName, image, discord, backgroundColor } = req.body;
+    const { username, fullName, discord, image, bgColor, token } = req.body;
     const decoded = await jwt.verify(token, process.env.MY_SECRET)
     if (decoded.currentUser.username.toString() === username.toString()) {
-        const user = await User.findOne({ username: username });
+        const user = await User.findOne({ username: username })
         const id = user._id;
-        await User.findByIdAndUpdate(id, { fullName: fullName, image: image, discord: discord, backgroundColor: backgroundColor });
-    } else {
-        res.status(500).send('Invalid user')
-    }
+        await User.findByIdAndUpdate(id, { fullName: fullName, image: image, discord: discord, backgroundColor: bgColor })
+        res.json({ message: 'update success' })
+    } else res.status(500).send('Invalid user')
 
 }))
 

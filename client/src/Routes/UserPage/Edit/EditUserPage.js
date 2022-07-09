@@ -1,134 +1,130 @@
-import { React, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from "../../../components/Navbar/Navbar";
-import './EditUserPage.css'
-import editpencil from '../../../assets/img/editpencil.png'
-import { useParams } from "react-router-dom";
+import { React, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import placeholder from '../../../assets/img/placeholder.png'
-const axios = require('axios');
+import { useParams } from 'react-router-dom'
+import './EditUserPage.css'
+const axios = require('axios')
+const infoURL = 'http://localhost:3000/userinfo'
+
 
 
 const EditUserPage = () => {
-    const navigate = useNavigate();
-    const [fullName, setFullName] = useState('');
-    const [currentImage, setCurrentImage] = useState('');
-    const [currentDiscord, setCurrentDiscord] = useState('');
-    const { username } = useParams();
-    const [currentBgColor, setCurrentBgColor] = useState('')
 
-    const [newBackgroundColor, setNewBackgroundColor] = useState('')
-    const backgroundColorHandler = (e) => {
-        setNewBackgroundColor(e.target.value)
+    let navigate = useNavigate();
+    const { username } = useParams();
+
+
+
+
+
+    const [fullName, setFullName] = useState('')
+    const [discord, setDiscord] = useState('')
+    const [image, setImage] = useState('')
+    const [bgColor, setBgColor] = useState('')
+
+    //set default useState values for later reference
+    const token = window.localStorage.getItem('token')
+    axios.post(infoURL, {
+        token: token
+    })
+        .then(res => {
+            console.log(res)
+            setFullName(res.data.user.fullName)
+
+            if (res.data.user.discord !== '') {
+                setDiscord(res.data.user.discord)
+            }
+
+            if (res.data.user.backgroundColor !== '') {
+                setBgColor(res.data.user.backgroundColor)
+            }
+
+            if (res.data.user.image) {
+                setImage(res.data.user.image)
+            } else { setImage(placeholder) }
+        })
+
+    //get user token
+
+    //pulling user info and setting useStates to those values
+
+
+    //new Value states and handlers. This is to create variables
+    //that will then be submitted to the server to edit user profile
+
+
+
+    let [newFullName, setNewFullName] = useState(fullName)
+    const fullNameHandler = (e) => {
+        setNewFullName(e.target.value)
     }
 
-    const [newDiscord, setNewDiscord] = useState('')
+    let [newDiscord, setNewDiscord] = useState(discord)
     const discordHandler = (e) => {
         setNewDiscord(e.target.value)
     }
-    const [newImage, setNewImage] = useState('')
+
+    let [newImage, setNewImage] = useState(image)
     const imageHandler = (e) => {
-        setNewImage(e.target.value);
+        setNewImage(e.target.value)
     }
 
-    const [newFullName, setNewFullName] = useState('')
-    const fullNameHandler = (e) => {
-        setNewFullName(e.target.value);
+    let [newBgColor, setNewBgColor] = useState(bgColor)
+    const bgColorHandler = (e) => {
+        setNewBgColor(e.target.value)
     }
 
+    //submit Handler for when the form gets submitted to post to the server
 
-    const token = window.localStorage.getItem('token');
-    const url = 'http://localhost:3001/checkUserToken';
-    axios.post(url, {
-        data: token
-    })
-        .then(res => {
-            const tokenUser = res.data.currentUser.username;
-            if (tokenUser.toString() === username.toString()) {
-                console.log('This user is verified.')
-                GetEditForm();
-            } else {
-                console.log('You are not allowed to edit this page.');
-                setFullName('You do not have permission to edit this page.')
-                navigate('/')
+    const submitHandler = (e) => {
 
-            }
+        e.preventDefault();
 
-        })
+        if (newFullName === '') {
+            newFullName = fullName
+        }
 
-    const changeBackground = () => {
-        if (!currentBgColor) {
-            document.body.style = 'background: #eff7f6;'
-        } else document.body.style = `background: ${currentBgColor} ;`
+        if (newDiscord === '') {
+            newDiscord = discord;
+        }
 
-    }
-    const GetEditForm = () => {
-        const url = 'http://localhost:3001/getUserInfo';
+        if (newImage === '') {
+            newImage = image;
+        }
+
+        if (newBgColor === '') {
+            newBgColor = bgColor;
+        }
+
+        axios.put('http://localhost:3000/editUserProfile', {
 
 
+            username: username,
+            fullName: newFullName,
+            discord: newDiscord,
+            image: newImage,
+            bgColor: newBgColor,
+            token: token
 
-        axios.post(url, {
-            username: username
         })
             .then(res => {
                 console.log(res)
-                if (!res.data.backgroundColor) { setCurrentBgColor('') }
-                else { setCurrentBgColor(res.data.backgroundColor) }
-                if (!res.data.discord) { setCurrentDiscord('') }
-                else { setCurrentDiscord(res.data.discord) }
-                setFullName(res.data.fullName);
+                navigate(`/${username}`)
+            })
 
-                if (!res.data.image) { setCurrentImage(placeholder) }
-                else {
-                    setCurrentImage(res.data.image);
-                }
-            })
-            .catch(err => {
-                setFullName('User does not currently exist')
-            })
     }
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-
-        axios.put('http://localhost:3001/editUserProfile', {
-            token: token,
-            username: username,
-            image: newImage,
-            fullName: newFullName,
-            discord: newDiscord,
-            backgroundColor: newBackgroundColor
-
-        })
-        navigate(`/${username}`)
-            .then(response => {
-                console.log(response);
-
-            });
-        // axios.post(url, user)
-
-    }
 
     return (
         <div>
-            {changeBackground()}
-            <form onSubmit={submitHandler}>
-                <div className="p-3">
-                    <label for='bgcolor'>Background color (solid / HEX value with #)</label>
-                    <input placeholder="# / color" className="my-3" name="image" id="bgColor" onChange={backgroundColorHandler}></input>
-                </div>
-                <div className="container d-flex flex-column align-items-center mt-5">
-                    <img className="userPic" src={currentImage} alt="user profpic"></img>
-                    <div className="d-flex flex-row">
-                        <input placeholder="New Image Link" className="my-3" name="image" onChange={imageHandler}></input>
-                    </div>
-                    <input placeholder="Discord username" className="my-3" name="discord" onChange={discordHandler}></input>
-                    <input placeholder={fullName} name="fullName" className="my-3" onChange={fullNameHandler}></input>
-                    <div class="userName mt-3">@{username}</div>
-                    <button type="submit" className="text-center mt-3 submitButton py-2 px-4">Submit</button>
-                </div>
-
-            </form >
-        </div>
+            <form>
+                <input defaultValue={fullName} onChange={fullNameHandler}></input>
+                <input defaultValue={discord} onChange={discordHandler}></input>
+                <input defaultValue={image} onChange={imageHandler}></input>
+                <input defaultValue={bgColor} onChange={bgColorHandler}></input>
+                <button onClick={submitHandler}>Submit</button>
+            </form>
+        </div >
     )
 }
 
