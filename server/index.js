@@ -22,14 +22,9 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.set('views', path.join(__dirname, 'views'));
 app.use(cookieParser());
-
-if (process.env.NODE_ENV === "production") {
-    // Set the static assets folder (ie, client build)
-    app.use(express.static('client/build'));
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-    });
-}
+app.listen(PORT, () => {
+    console.log(`Server listening on 3001`);
+});
 
 const PORT = process.env.PORT || 3001;
 
@@ -41,12 +36,6 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch(err => {
         console.log("oh no, Mongo error", err)
     })
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
 
 app.post('/signup', async (req, res) => {
     const { fullName, username, password } = req.body;
@@ -71,7 +60,12 @@ app.post('/login', catchAsync(async (req, res) => {
 
 
 }))
-
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+app.get('/signup', (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 app.post('/userinfo', catchAsync(async (req, res) => {
     const { token } = req.body;
     const decoded = await jwt.verify(token, process.env.MY_SECRET)
@@ -103,12 +97,16 @@ app.put('/editUserProfile', catchAsync(async (req, res) => {
     } else res.status(403).send('Invalid user. You do not have permission to edit this profile.')
 
 }))
-
+if (process.env.NODE_ENV === "production") {
+    // Set the static assets folder (ie, client build)
+    app.use(express.static('client/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    });
+}
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-app.listen(PORT, () => {
-    console.log(`Server listening on 3001`);
-});
+
 
