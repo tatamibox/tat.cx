@@ -22,12 +22,12 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.set('views', path.join(__dirname, 'views'));
 app.use(cookieParser());
+
+
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server listening on 3001`);
 });
-
-const PORT = process.env.PORT || 3001;
-
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('Mongo connection open')
