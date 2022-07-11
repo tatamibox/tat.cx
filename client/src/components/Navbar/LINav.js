@@ -10,7 +10,7 @@ const LINav = () => {
 
 
     const logOut = () => {
-        window.localStorage.setItem('token', '');
+        window.localStorage.removeItem('token');
         Navigate('/')
     }
 
