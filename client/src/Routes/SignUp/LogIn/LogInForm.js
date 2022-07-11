@@ -43,7 +43,7 @@ const LogInForm = () => {
         </div>
         <label class="sr-only" for="password">Password</label>
         <div class="input-group mb-4 mr-sm-2">
-          <input type="text" class="form-control" id="password" onChange={passwordChangeHandler} placeholder="Password" name="password" required />
+          <input type="password" class="form-control" id="password" onChange={passwordChangeHandler} placeholder="Password" name="password" required />
         </div>
 
         <div class="form-check mb-3 mr-sm-2">

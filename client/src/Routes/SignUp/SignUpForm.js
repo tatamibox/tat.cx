@@ -59,9 +59,9 @@ const SignUpForm = () => {
         </div>
         <label class="sr-only" for="password">Password</label>
         <div class="input-group mb-4 mr-sm-2">
-          <input type="text" onChange={passwordChangeHandler} class="form-control" id="password" placeholder="Password" name="password" required />
+          <input type="password" onChange={passwordChangeHandler} class="form-control" id="password" placeholder="Password" name="password" required />
         </div>
-
+        message from eric: <br></br>passwords currently have no rules, will change later
         <button type="submit" class="form__submit mb-2 py-2 px-3">Submit</button>
       </form>
     </div>
