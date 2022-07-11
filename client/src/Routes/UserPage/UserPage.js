@@ -30,7 +30,7 @@ const UserPage = () => {
             setCurrentFacebook(res.data.facebook);
             setCurrentInstagram(res.data.instagram);
             setCurrentTwitter(res.data.twitter);
-            setCurrentFacebook(res.data.facebook)
+            setCurrentFacebook(res.data.facebook);
 
             if (!res.data.image) {
                 setCurrentImage(placeholder)
@@ -87,7 +87,7 @@ const UserPage = () => {
     return (
 
         <div className="container d-flex flex-column align-items-center mt-5">
-            {changeBackground()};
+            {changeBackground()}
             <img className="userPic" src={currentImage} alt="user profile pic"></img>
             <div class="userFullName mt-3">{fullName}</div>
             <div class="userName">@{username}</div>
