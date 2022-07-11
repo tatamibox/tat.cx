@@ -5,7 +5,7 @@ const axios = require('axios');
 
 const LogInForm = () => {
   const navigate = useNavigate();
-  const url = 'http://localhost:3001/login';
+  const url = '/login';
 
   const logInHandler = (e) => {
     e.preventDefault();
