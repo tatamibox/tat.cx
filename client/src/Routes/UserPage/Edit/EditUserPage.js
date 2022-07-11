@@ -166,11 +166,12 @@ const EditUserPage = () => {
             <form>
                 <div>
                     <input defaultValue={fullName} placeholder="Name" onChange={fullNameHandler}></input>
-                    <input defaultValue={image} placeholder="Image (URL)" onChange={imageHandler}></input>
-                    <input defaultValue={bgColor} placeholder="BG Color (color / #HEX)" onChange={bgColorHandler}></input>
+                    <label for='img'>Profile Image URL</label>
+                    <input placeholder="Direct image link (https://...)" defaultValue={image} onChange={imageHandler} id="image"></input>
+                    <input defaultValue={bgColor} placeholder="BG Color #HEX (with #)" onChange={bgColorHandler}></input>
                 </div>
                 <div className='mt-4'>
-                    <input type="text" defaultValue={discord} onChange={discordHandler} class="form-control mb-4 mr-sm-2" id="discord" placeholder="Discord" name="discord" />
+                    <input type="text" defaultValue={discord} onChange={discordHandler} class="form-control mb-4 mr-sm-2" id="discord" placeholder="DiscordUsername#0001" name="discord" />
                     <div class="input-group mb-4 mr-sm-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">@</div>
