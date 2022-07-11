@@ -19,7 +19,7 @@ const LINav = () => {
 
 
 
-    const url = 'http://localhost:3001/userinfo';
+    const url = '/userinfo';
     const token = window.localStorage.getItem('token');
     axios.post(url, { token: token })
         .then((res) => {
