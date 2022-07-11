@@ -60,12 +60,7 @@ app.post('/login', catchAsync(async (req, res) => {
 
 
 }))
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-app.get('/signup', (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+
 app.post('/userinfo', catchAsync(async (req, res) => {
     const { token } = req.body;
     const decoded = await jwt.verify(token, process.env.MY_SECRET)
