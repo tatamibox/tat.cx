@@ -14,7 +14,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const catchAsync = require('./utils/catchAsync')
 const corsOptions = {
-    origin: ["URL ALLOWED", ...],
+    origin: ["URL ALLOWED", "https://tatpreview.herokuapp.com/"],
     credentials: true,            //access-control-allow-credentials:true
     optionSuccessStatus: 200
 }
