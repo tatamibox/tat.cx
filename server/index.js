@@ -4,17 +4,15 @@ const axios = require('axios');
 const mongoose = require('mongoose');
 const path = require('path');
 const ejs = require('ejs');
+const dotenv = require("dotenv")
 require('dotenv').config();
 const User = require('./models/User');
 const cors = require('cors');
+const uri = process.env.MONGODB_URI
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const catchAsync = require('./utils/catchAsync')
-const usersRouter = require('./routes/user');
-app.use('/api/users', usersRouter);
-const friendsRouter = require('./routes/friend');
-app.use('/api/friends', friendsRouter);
 const corsOptions = {
     credentials: true,            //access-control-allow-credentials:true
     optionSuccessStatus: 200
@@ -33,8 +31,9 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
     });
 }
 
-const port = process.env.PORT || 3001;
-mongoose.connect(process.env.MONGO_URI)
+const PORT = process.env.PORT || 3001;
+
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('Mongo connection open')
 
@@ -102,7 +101,7 @@ app.put('/editUserProfile', catchAsync(async (req, res) => {
 }))
 
 
-app.listen(3001, () => {
+app.listen(PORT, () => {
     console.log(`Server listening on 3001`);
 });
 
