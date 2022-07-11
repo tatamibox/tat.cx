@@ -8,7 +8,7 @@ const UserPage = () => {
 
     const { username } = useParams();
 
-    const url = 'http://localhost:3001/getUserInfo';
+    const url = '/getUserInfo';
 
     const [fullName, setFullName] = useState('');
     const [currentImage, setCurrentImage] = useState('');

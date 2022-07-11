@@ -4,7 +4,7 @@ import placeholder from '../../../assets/img/placeholder.png'
 import { useParams } from 'react-router-dom'
 import './EditUserPage.css'
 const axios = require('axios')
-const infoURL = 'http://localhost:3000/userinfo'
+const infoURL = '/userinfo'
 
 
 
