@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fc2e6be7.css",
+    "main.js": "/static/js/main.6c0694e9.js",
+    "static/media/infographic.png": "/static/media/infographic.0c7b946a91713ed7b95d.png",
+    "static/media/logo.png": "/static/media/logo.12f1e141188d74b227c1.png",
+    "static/media/greypencil.png": "/static/media/greypencil.98ad341a5ec34455f28f.png",
+    "static/media/placeholder.png": "/static/media/placeholder.c3f945216dc12c9498dc.png",
+    "index.html": "/index.html",
+    "main.fc2e6be7.css.map": "/static/css/main.fc2e6be7.css.map",
+    "main.6c0694e9.js.map": "/static/js/main.6c0694e9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc2e6be7.css",
+    "static/js/main.6c0694e9.js"
+  ]
+}
