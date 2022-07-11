@@ -8,7 +8,7 @@ const InfographicLeft = () => {
 
     const token = window.localStorage.getItem('token')
     let isLoggedIn = false;
-    if (token !== '') {
+    if (token !== null) {
         isLoggedIn = true;
     }
 
