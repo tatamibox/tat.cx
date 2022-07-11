@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
 import './InfographicLeft.css';
 const axios = require('axios');
-const url = 'http://localhost:3000/checkUserToken'
+const url = '/checkUserToken'
 const InfographicLeft = () => {
 
     // check whether or not user is logged in to change the status of the button on return
