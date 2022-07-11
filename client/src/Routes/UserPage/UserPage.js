@@ -57,7 +57,7 @@ const UserPage = () => {
         if (currentTwitter) {
             return (
 
-                <li className="discord shadow py-1 px-3"><img src={twitter} className="icon" alt="twitter"></img>@{currentTwitter}</li >
+                <a className="link" href={`https://twitter.com/${currentTwitter}`}><li className="discord shadow py-1 px-3"><img src={twitter} className="icon" alt="twitter"></img>@{currentTwitter}</li></a>
             )
         } else return;
     }
@@ -66,7 +66,7 @@ const UserPage = () => {
         if (currentInstagram) {
             return (
 
-                <li className="discord shadow py-1 px-3"><img src={instagram} className="icon" alt="instagram"></img>@{currentInstagram}</li >
+                <a className="link" href={`https://instagram.com/${currentInstagram}`}><li className="discord shadow py-1 px-3"><img src={instagram} className="icon" alt="instagram"></img>@{currentInstagram}</li></a>
             )
         } else return;
     }

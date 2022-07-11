@@ -50,3 +50,7 @@
 .icon {
     margin-right: 0.5rem;
 }
+
+a {
+    text-decoration: none;
+}
