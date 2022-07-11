@@ -36,9 +36,7 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch(err => {
         console.log("oh no, Mongo error", err)
     })
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+
 app.post('/signup', async (req, res) => {
     const { fullName, username, password } = req.body;
     const hash = await bcrypt.hash(password, 10);
