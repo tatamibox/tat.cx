@@ -36,7 +36,9 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch(err => {
         console.log("oh no, Mongo error", err)
     })
-
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 app.post('/signup', async (req, res) => {
     const { fullName, username, password } = req.body;
     const hash = await bcrypt.hash(password, 10);
@@ -95,9 +97,10 @@ app.put('/editUserProfile', catchAsync(async (req, res) => {
 if (process.env.NODE_ENV === "production") {
     // Set the static assets folder (ie, client build)
     app.use(express.static('client/build'));
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-    });
+    app.get('*', function (req, res) {
+        const fullPath = path.join(__dirname, '../client', 'build', 'index.html')
+        res.sendFile(fullPath)
+    })
 }
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
