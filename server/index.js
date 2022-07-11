@@ -14,6 +14,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const catchAsync = require('./utils/catchAsync')
 const corsOptions = {
+    origin: ["URL ALLOWED", ...],
     credentials: true,            //access-control-allow-credentials:true
     optionSuccessStatus: 200
 }
