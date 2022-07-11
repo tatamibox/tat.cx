@@ -15,9 +15,13 @@ const EditUserPage = () => {
 
 
     const [fullName, setFullName] = useState('')
-    const [discord, setDiscord] = useState('')
     const [image, setImage] = useState('')
     const [bgColor, setBgColor] = useState('')
+
+    const [discord, setDiscord] = useState('')
+    const [twitter, setTwitter] = useState('')
+    const [facebook, setFacebook] = useState('')
+    const [instagram, setInstagram] = useState('')
 
 
 
@@ -31,6 +35,15 @@ const EditUserPage = () => {
             setFullName(res.data.user.fullName)
             if (res.data.user.discord !== '') {
                 setDiscord(res.data.user.discord)
+            }
+            if (res.data.user.twitter !== '') {
+                setTwitter(res.data.user.twitter)
+            }
+            if (res.data.user.facebook !== '') {
+                setFacebook(res.data.user.facebook)
+            }
+            if (res.data.user.instagram !== '') {
+                setInstagram(res.data.user.instagram)
             }
 
             if (res.data.user.backgroundColor !== '') {
@@ -72,6 +85,22 @@ const EditUserPage = () => {
         setNewBgColor(e.target.value)
     }
 
+    let [newTwitter, setNewTwitter] = useState(twitter)
+    const twitterHandler = (e) => {
+        setNewTwitter(e.target.value)
+    }
+
+    let [newInstagram, setNewInstagram] = useState(instagram)
+    const instagramHandler = (e) => {
+        setNewInstagram(e.target.value)
+    }
+
+    let [newFacebook, setNewFacebook] = useState(facebook)
+    const facebookHandler = (e) => {
+        setNewFacebook(e.target.value)
+    }
+
+
     //submit Handler for when the form gets submitted to post to the server
 
     const submitHandler = (e) => {
@@ -86,6 +115,19 @@ const EditUserPage = () => {
             newDiscord = discord;
         }
 
+        if (newTwitter === '') {
+            newTwitter = twitter;
+        }
+
+        if (newFacebook === '') {
+            newFacebook = facebook;
+        }
+
+        if (newInstagram === '') {
+            newInstagram = instagram;
+        }
+
+
         if (newImage === '') {
             newImage = image;
         }
@@ -94,15 +136,21 @@ const EditUserPage = () => {
             newBgColor = bgColor;
         }
 
+
+
         axios.put('http://localhost:3000/editUserProfile', {
 
 
             username: username,
             fullName: newFullName,
-            discord: newDiscord,
             image: newImage,
             bgColor: newBgColor,
-            token: token
+            token: token,
+
+            discord: newDiscord,
+            twitter: newTwitter,
+            instagram: newInstagram,
+            facebook: newFacebook
 
         })
             .then(res => {
@@ -116,10 +164,17 @@ const EditUserPage = () => {
     return (
         <div>
             <form>
-                <input defaultValue={fullName} onChange={fullNameHandler}></input>
-                <input defaultValue={discord} onChange={discordHandler}></input>
-                <input defaultValue={image} onChange={imageHandler}></input>
-                <input defaultValue={bgColor} onChange={bgColorHandler}></input>
+                <div>
+                    <input defaultValue={fullName} placeholder="Name" onChange={fullNameHandler}></input>
+                    <input defaultValue={image} placeholder="Image (URL)" onChange={imageHandler}></input>
+                    <input defaultValue={bgColor} placeholder="BG Color (color / #HEX)" onChange={bgColorHandler}></input>
+                </div>
+                <div className='mt-4'>
+                    <input defaultValue={discord} placeholder="Discord#0001" onChange={discordHandler}></input>
+                    <input defaultValue={twitter} placeholder="@Twitter" onChange={twitterHandler}></input>
+                    <input defaultValue={instagram} placeholder="@Instagram" onChange={instagramHandler}></input>
+                    <input defaultValue={facebook} placeholder="Facebook" onChange={facebookHandler}></input>
+                </div>
                 <button onClick={submitHandler}>Submit</button>
             </form>
         </div >

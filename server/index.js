@@ -11,7 +11,10 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const catchAsync = require('./utils/catchAsync')
-
+const usersRouter = require('./routes/user');
+app.use('/api/users', usersRouter);
+const friendsRouter = require('./routes/friend');
+app.use('/api/friends', friendsRouter);
 const corsOptions = {
     credentials: true,            //access-control-allow-credentials:true
     optionSuccessStatus: 200
@@ -23,6 +26,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(cookieParser());
 
 
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
+    app.use(express.static('client/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname + '/client/build/index.html'));
+    });
+}
+
+const port = process.env.PORT || 3001;
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('Mongo connection open')
@@ -69,7 +80,7 @@ app.post('/userinfo', catchAsync(async (req, res) => {
 app.post('/getUserInfo', catchAsync(async (req, res) => {
     const { username } = req.body;
     const currentUser = await User.findOne({ username: username });
-    res.json({ discord: currentUser.discord, username: currentUser.username, fullName: currentUser.fullName, image: currentUser.image, backgroundColor: currentUser.backgroundColor });
+    res.json({ discord: currentUser.discord, username: currentUser.username, fullName: currentUser.fullName, image: currentUser.image, backgroundColor: currentUser.backgroundColor, twitter: currentUser.twitter, facebook: currentUser.facebook, instagram: currentUser.instagram });
 }))
 
 app.post('/checkUserToken', catchAsync(async (req, res) => {
@@ -79,12 +90,12 @@ app.post('/checkUserToken', catchAsync(async (req, res) => {
 }))
 
 app.put('/editUserProfile', catchAsync(async (req, res) => {
-    const { username, fullName, discord, image, bgColor, token } = req.body;
+    const { username, fullName, image, bgColor, token, discord, facebook, instagram, twitter } = req.body;
     const decoded = await jwt.verify(token, process.env.MY_SECRET)
     if (decoded.currentUser.username.toString() === username.toString()) {
         const user = await User.findOne({ username: username })
         const id = user._id;
-        await User.findByIdAndUpdate(id, { fullName: fullName, image: image, discord: discord, backgroundColor: bgColor })
+        await User.findByIdAndUpdate(id, { fullName: fullName, image: image, discord: discord, backgroundColor: bgColor, twitter: twitter, instagram: instagram, facebook: facebook })
         res.json({ message: 'update success' })
     } else res.status(403).send('Invalid user. You do not have permission to edit this profile.')
 

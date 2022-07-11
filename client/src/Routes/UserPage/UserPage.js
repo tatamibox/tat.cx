@@ -12,8 +12,12 @@ const UserPage = () => {
 
     const [fullName, setFullName] = useState('');
     const [currentImage, setCurrentImage] = useState('');
-    const [currentDiscord, setCurrentDiscord] = useState('');
     const [backgroundColor, setBackgroundColor] = useState('');
+
+    const [currentDiscord, setCurrentDiscord] = useState('');
+    const [currentTwitter, setCurrentTwitter] = useState('');
+    const [currentInstagram, setCurrentInstagram] = useState('');
+    const [currentFacebook, setCurrentFacebook] = useState('');
 
     axios.post(url, {
         username: username
@@ -23,6 +27,11 @@ const UserPage = () => {
             setBackgroundColor(res.data.backgroundColor)
             setFullName(res.data.fullName);
             setCurrentDiscord(res.data.discord);
+            setCurrentFacebook(res.data.facebook);
+            setCurrentInstagram(res.data.instagram);
+            setCurrentTwitter(res.data.twitter);
+            setCurrentFacebook(res.data.facebook)
+
             if (!res.data.image) {
                 setCurrentImage(placeholder)
             } else {
@@ -37,11 +46,37 @@ const UserPage = () => {
         if (currentDiscord) {
             return (
 
-                <li className="shadow py-1 px-3"><img src={discord} className="icon" alt="discord"></img>{currentDiscord}</li>
-
+                <li className="discord shadow py-1 px-3"><img src={discord} className="icon" alt="discord"></img>{currentDiscord}</li>
             )
         } else return;
     }
+
+    const testTwitter = () => {
+        if (currentTwitter) {
+            return (
+
+                <li className="discord shadow py-1 px-3">{currentTwitter}</li >
+            )
+        } else return;
+    }
+
+    const testInstagram = () => {
+        if (currentInstagram) {
+            return (
+
+                <li className="discord shadow py-1 px-3">{currentInstagram}</li >
+            )
+        } else return;
+    }
+    const testFacebook = () => {
+        if (currentFacebook) {
+            return (
+
+                <li className="discord shadow py-1 px-3">{currentFacebook}</li >
+            )
+        } else return;
+    }
+
 
     const changeBackground = () => {
         if (!backgroundColor) {
@@ -60,6 +95,9 @@ const UserPage = () => {
 
             <div className="socials__bar">
                 {testDiscord()}
+                {testTwitter()}
+                {testInstagram()}
+                {testFacebook()}
             </div>
         </div>
 

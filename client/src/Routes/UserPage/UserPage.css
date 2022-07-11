@@ -28,6 +28,7 @@
     flex-direction: row;
     margin-top: 1.5rem;
     gap: 1rem;
+    filter: brightness(65%);
 
 }
 
@@ -40,8 +41,7 @@
 
 .socials__bar li:hover {
     cursor: pointer;
-    margin-top: -1px;
-    height: 110%;
+    transform: scaleX(105%);
 }
 
 .shadow {
@@ -51,3 +51,5 @@
 .icon {
     margin-right: 1rem;
 }
+
+.discord {}

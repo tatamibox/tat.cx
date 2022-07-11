@@ -16,8 +16,13 @@ const userSchema = new Schema({
         required: true
     },
     image: String,
+    backgroundColor: String,
+
     discord: String,
-    backgroundColor: String
+    twitter: String,
+    facebook: String,
+    instagram: String,
+    github: String
 
 })
 
