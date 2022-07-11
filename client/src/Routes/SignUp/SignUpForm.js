@@ -30,7 +30,7 @@ const SignUpForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    axios.post(url, {
+    axios.post('/signup', {
       fullName: enteredFullName,
       password: enteredPassword,
       username: enteredUsername
