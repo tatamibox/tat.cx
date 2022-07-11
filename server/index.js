@@ -40,9 +40,15 @@ mongoose.connect(process.env.MONGODB_URI)
 
 app.post('/signup', async (req, res) => {
     const { fullName, username, password } = req.body;
-    const hash = await bcrypt.hash(password, 10);
-    const newUser = new User({ fullName: fullName, username: username, password: hash });
-    newUser.save();
+    const checkForExistingUser = await User.findOne({ username: username });
+    console.log(checkForExistingUser)
+    if (checkForExistingUser !== null) {
+        res.status(500).send('Sorry, this user already exists')
+    } else {
+        const hash = await bcrypt.hash(password, 10);
+        const newUser = new User({ fullName: fullName, username: username, password: hash });
+        newUser.save();
+    }
 })
 
 //login

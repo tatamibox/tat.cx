@@ -138,7 +138,7 @@ const EditUserPage = () => {
 
 
 
-        axios.put('http://localhost:3000/editUserProfile', {
+        axios.put('/editUserProfile', {
 
 
             username: username,
@@ -170,10 +170,20 @@ const EditUserPage = () => {
                     <input defaultValue={bgColor} placeholder="BG Color (color / #HEX)" onChange={bgColorHandler}></input>
                 </div>
                 <div className='mt-4'>
-                    <input defaultValue={discord} placeholder="Discord#0001" onChange={discordHandler}></input>
-                    <input defaultValue={twitter} placeholder="@Twitter" onChange={twitterHandler}></input>
-                    <input defaultValue={instagram} placeholder="@Instagram" onChange={instagramHandler}></input>
-                    <input defaultValue={facebook} placeholder="Facebook" onChange={facebookHandler}></input>
+                    <input type="text" defaultValue={discord} onChange={discordHandler} class="form-control mb-4 mr-sm-2" id="discord" placeholder="Discord" name="discord" />
+                    <div class="input-group mb-4 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">@</div>
+                        </div>
+                        <input type="text" class="form-control" id="twitter" placeholder="twitter" name="twitter" defaultValue={twitter} onChange={twitterHandler} />
+                    </div>
+                    <div class="input-group mb-4 mr-sm-2">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">@</div>
+                        </div>
+                        <input type="text" class="form-control" id="instagram" placeholder="Instagram" name="instagram" defaultValue={instagram} onChange={instagramHandler} />
+                    </div>
+
                 </div>
                 <button onClick={submitHandler}>Submit</button>
             </form>

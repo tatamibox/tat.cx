@@ -1,6 +1,8 @@
 import { React, useState } from 'react';
 import './UserPage.css'
 import discord from '../../assets/img/discord.png'
+import instagram from '../../assets/img/instagram.png'
+import twitter from '../../assets/img/twitter.png'
 import { useParams } from "react-router-dom";
 import placeholder from '../../assets/img/placeholder.png'
 const axios = require('axios');
@@ -55,7 +57,7 @@ const UserPage = () => {
         if (currentTwitter) {
             return (
 
-                <li className="discord shadow py-1 px-3">{currentTwitter}</li >
+                <li className="discord shadow py-1 px-3"><img src={twitter} className="icon" alt="twitter"></img>@{currentTwitter}</li >
             )
         } else return;
     }
@@ -64,7 +66,7 @@ const UserPage = () => {
         if (currentInstagram) {
             return (
 
-                <li className="discord shadow py-1 px-3">{currentInstagram}</li >
+                <li className="discord shadow py-1 px-3"><img src={instagram} className="icon" alt="instagram"></img>@{currentInstagram}</li >
             )
         } else return;
     }
