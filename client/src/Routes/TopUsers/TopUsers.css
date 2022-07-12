@@ -1,0 +1,36 @@
+body {
+    height: 100vh;
+}
+
+.topUser {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+
+.topUser .card-title {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.topUser img {
+    height: 15rem;
+    width: 15rem;
+}
+
+@media screen and (max-width: 768px) {
+
+    .topUser {
+        width: 75%;
+    }
+
+    .topUser img {
+        height: 15rem;
+        width: 15rem;
+    }
+}

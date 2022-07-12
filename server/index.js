@@ -68,6 +68,12 @@ app.post('/login', catchAsync(async (req, res) => {
 
 }))
 
+app.get('/getTopUsers', catchAsync(async (req, res) => {
+    const topUsers = await User.find().sort({ pageVisits: -1 }).collation({ locale: "en_US", numericOrdering: true });
+    res.json(topUsers)
+}
+))
+
 app.post('/userinfo', catchAsync(async (req, res) => {
     const { token } = req.body;
     const decoded = await jwt.verify(token, process.env.MY_SECRET)

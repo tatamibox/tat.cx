@@ -15,8 +15,15 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    image: String,
+    image: {
+        type: String,
+        default: '/static/media/placeholder.c3f945216dc12c9498dc.png'
+    },
     backgroundColor: String,
+    pageVisits: {
+        type: Number,
+        default: 0
+    },
 
     discord: String,
     twitter: String,

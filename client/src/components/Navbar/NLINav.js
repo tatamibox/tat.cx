@@ -17,6 +17,9 @@ const NLINav = () => {
                     </ul>
                     <ul class="navbar-nav navbar__ul">
                         <li class="nav-item">
+                            <a class="nav-link" href="/top">Top Users</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/">About</a>
                         </li>
                         <li class="nav-item">

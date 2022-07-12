@@ -10,6 +10,7 @@ const UserPage = () => {
 
     const { username } = useParams();
 
+
     const url = '/getUserInfo';
 
     const [fullName, setFullName] = useState('');
