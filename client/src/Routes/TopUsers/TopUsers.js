@@ -27,7 +27,7 @@ const TopUsers = () => {
 
         < div className="home">
             <Navbar />
-            <TopUser image={topUser.image} username={topUser.username} pageVisits={topUser.pageVisits} />
+            <TopUser image={topUser.image} username={topUser.username} pageVisits={topUser.pageVisits} fullName={topUser.fullName} />
             <OtherTopUsers position='2' />
             <OtherTopUsers position='3' />
             <OtherTopUsers position='4' />

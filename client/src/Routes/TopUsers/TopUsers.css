@@ -13,9 +13,15 @@ html {
     margin: auto;
 }
 
-.topUser .card-title {
+.full__name {
     font-weight: bold;
-    font-size: 1rem;
+    margin-left: 1rem;
+}
+
+.topUser .card-title {
+
+    font-size: 2.5rem;
+    margin-bottom: -0.5rem;
 }
 
 .topUser img {

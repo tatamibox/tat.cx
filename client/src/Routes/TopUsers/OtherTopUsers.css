@@ -17,6 +17,11 @@
     text-align: center;
 }
 
+.fullName {
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
 .otherUser img {
     width: 10rem;
     height: 10rem;
