@@ -1,7 +1,8 @@
 import { React, useState } from 'react'
-import './InfographicLeft.css';
+import styles from './InfographicLeft.module.css'
 const axios = require('axios');
-const url = '/checkUserToken'
+const url = '/checkUserToken';
+
 const InfographicLeft = () => {
 
     // check whether or not user is logged in to change the status of the button on return
@@ -27,10 +28,10 @@ const InfographicLeft = () => {
 
 
     return (
-        <div class="infographic__textarea">
-            <div class="infographic__heading">Create your own shortened URL with ease.</div>
-            <div class="infographic__subheading">Completely accessible, completely free</div>
-            {isLoggedIn ? <a class="infographic__button__edit py-3 px-3" href={`/${username}/edit`}>Edit link</a> : <a class="infographic__button py-3 px-3" href="/signup">Create a link</a>}
+        <div className={styles.infographic__textarea}>
+            <div class={styles.infographic__heading}>Create your own shortened URL with ease.</div>
+            <div class={styles.infographic__subheading}>Completely accessible, completely free</div>
+            {isLoggedIn ? <a className={`${styles.infographic__button} py-3 px-3`} href={`/${username}/edit`}>Edit link</a> : <a className={`${styles.infographic__button} py-3 px-3`} href="/signup">Create a link</a>}
         </div>
     )
 }
