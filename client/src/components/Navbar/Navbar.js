@@ -1,6 +1,5 @@
 
-import logo from '../../assets/img/logo.png'
-import './Navbar.css'
+import styles from './Navbar.module.css'
 import { React, useState } from 'react';
 import NLINav from './NLINav';
 import LINav from './LINav';

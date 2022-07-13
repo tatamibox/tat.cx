@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './LogInForm.css'
+import styles from './LogInForm.module.css'
 const axios = require('axios');
 
 const LogInForm = () => {
@@ -31,7 +31,7 @@ const LogInForm = () => {
 
 
   return (
-    <div class="logInForm__container">
+    <div class={styles.logInForm__container}>
       <form class="form-inline newUserForm" onSubmit={logInHandler}>
 
         <label class="sr-only" for="username">Username</label>
@@ -53,7 +53,7 @@ const LogInForm = () => {
           </label>
         </div>
 
-        <button type="submit" class="form__submit mb-2 py-2 px-3">Login</button>
+        <button type="submit" class={`${styles.form__submit} mb-2 py-2 px-3`}>Login</button>
       </form>
     </div>
   )

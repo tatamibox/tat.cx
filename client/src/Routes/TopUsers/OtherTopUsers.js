@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react'
-import './OtherTopUsers.css'
+import styles from './OtherTopUsers.module.css'
 import placeholder from '../../assets/img/placeholder.png'
 import axios from 'axios'
 const OtherTopUsers = (props) => {
@@ -22,10 +22,10 @@ const OtherTopUsers = (props) => {
 
 
     return (
-        <div class="card otherUser mx-auto">
+        <div class={`card mx-auto ${styles.otherUser}`}>
             <img src={image} className="otherUser cardImage" alt={username} />
-            <div class="card-body">
-                <h5 class="otherUser card-title">#{props.position}. <span className='fullName'>{fullName}</span></h5>
+            <div class={styles[`card-body`]}>
+                <h5 class="otherUser card-title">#{props.position}. <span className={styles.fullName}>{fullName}</span></h5>
                 <p class="card-text">@{username}</p>
                 <p class="card-text">total visits: {pageVisits}</p>
                 <a href={`/${username}`} class="btn btn-warning">Visit {username}</a>

@@ -15,17 +15,20 @@ a {
     text-decoration: none;
     color: black !important;
 }
+
 @media only screen and (min-width: 768px) {
-.farRight {
-    margin-right: 3rem !important;
-    background-color: #f7d6e0;
-    border-radius: 500px;
-    transition: background-color 190ms ease-in-out;
-}
+    .farRight {
+        margin-left: 3rem;
+        margin-right: 3rem !important;
+        background-color: #f7d6e0;
+        border-radius: 500px;
+        transition: background-color 190ms ease-in-out;
+    }
 
 
 
 }
+
 .farRight:hover {
     background-color: #f2b5d4;
 }
@@ -61,5 +64,4 @@ a {
         justify-content: right;
         margin-right: 1rem;
     }
-    }
-    
+}

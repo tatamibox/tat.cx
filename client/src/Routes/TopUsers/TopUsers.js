@@ -1,5 +1,5 @@
 import Navbar from '../../components/Navbar/Navbar';
-import './TopUsers.css';
+import styles from './TopUsers.module.css';
 import { React, useState, useEffect } from 'react';
 import TopUser from './TopUser';
 import placeholder from '../../assets/img/placeholder.png'

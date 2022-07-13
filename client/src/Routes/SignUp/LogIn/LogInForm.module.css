@@ -1,13 +1,7 @@
-.form__container {
+.logInForm__container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-}
-
-.newUserForm {
-    display: flex;
-    flex-direction: column;
+    margin-top: 5rem;
 }
 
 .form__submit {
@@ -22,8 +16,4 @@
 
 .form__submit:hover {
     background-color: #7bdff2;
-}
-
-.loginRedir {
-    text-decoration: underline !important;
 }

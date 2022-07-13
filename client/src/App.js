@@ -6,7 +6,6 @@ import UserPage from './Routes/UserPage/UserPage';
 import Home from './Routes/Home';
 import TopUsers from './Routes/TopUsers/TopUsers';
 import EditUserPage from './Routes/UserPage/Edit/EditUserPage';
-import CreateLink from './Routes/CreateLink/CreateLink';
 import SignUp from './Routes/SignUp/SignUp';
 import LogIn from './Routes/SignUp/LogIn/LogIn';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -21,7 +20,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route exact path="/create" element={<CreateLink />} />
         <Route exact path="/signup" element={<SignUp />} />
         <Route exact path="/login" element={<LogIn />} />
         <Route path="/:username" element={<UserPage />} />

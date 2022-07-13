@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SignUpForm.css'
+import styles from './SignUpForm.module.css'
 import { useNavigate } from 'react-router-dom';
 const axios = require('axios');
 const url = 'http://localhost:3001/signup';
@@ -45,8 +45,8 @@ const SignUpForm = () => {
   }
 
   return (
-    <div class="form__container">
-      <form class="form-inline newUserForm" onSubmit={submitHandler}>
+    <div class={styles.form__container}>
+      <form class={`form-inline ${styles.newUserForm}`} onSubmit={submitHandler}>
         <label class="sr-only" for="fullName">Full Name</label>
         <input type="text" onChange={fullNameChangeHandler} class="form-control mb-4 mr-sm-2" id="fullName" placeholder="Jane Doe" name="fullName" required />
 
@@ -62,7 +62,7 @@ const SignUpForm = () => {
           <input type="password" onChange={passwordChangeHandler} class="form-control" id="password" placeholder="Password" name="password" required />
         </div>
         message from eric: <br></br>passwords currently have no rules, will change later
-        <button type="submit" class="form__submit mb-2 py-2 px-3">Submit</button>
+        <button type="submit" class={`${styles.form__submit} mb-2 py-2 px-3`}>Submit</button>
       </form>
     </div>
   )

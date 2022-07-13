@@ -1,0 +1,25 @@
+.form__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.newUserForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__submit {
+    background-color: #b2f7ef;
+    border-radius: 500px;
+    border: none;
+    transition: background-color 190ms ease-in-out;
+    width: 50%;
+    align-self: center;
+
+}
+
+.form__submit:hover {
+    background-color: #7bdff2;
+}

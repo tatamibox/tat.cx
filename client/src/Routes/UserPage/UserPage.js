@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import './UserPage.css'
+import styles from './UserPage.module.css'
 import discord from '../../assets/img/discord.png'
 import instagram from '../../assets/img/instagram.png'
 import twitter from '../../assets/img/twitter.png'
@@ -57,7 +57,7 @@ const UserPage = () => {
         if (currentDiscord) {
             return (
 
-                <li className="discord shadow py-1 px-3"><img src={discord} className="icon" alt="discord"></img>{currentDiscord}</li>
+                <li className={`shadow ${styles.discord} py-1 px-3`}><img src={discord} className={styles.icon} alt="discord"></img>{currentDiscord}</li>
             )
         } else return;
     }
@@ -66,7 +66,7 @@ const UserPage = () => {
         if (currentTwitter) {
             return (
 
-                <a className="link" href={`https://twitter.com/${currentTwitter}`}><li className="discord shadow py-1 px-3"><img src={twitter} className="icon" alt="twitter"></img>@{currentTwitter}</li></a>
+                <a className="link" href={`https://twitter.com/${currentTwitter}`}><li className={`shadow ${styles.discord} py-1 px-3`}><img src={twitter} className={styles.icon} alt="twitter"></img>@{currentTwitter}</li></a>
             )
         } else return;
     }
@@ -75,7 +75,7 @@ const UserPage = () => {
         if (currentInstagram) {
             return (
 
-                <a className="link" href={`https://instagram.com/${currentInstagram}`}><li className="discord shadow py-1 px-3"><img src={instagram} className="icon" alt="instagram"></img>@{currentInstagram}</li></a>
+                <a className="link" href={`https://instagram.com/${currentInstagram}`}><li className={`shadow ${styles.discord} py-1 px-3`}><img src={instagram} className={styles.icon} alt="instagram"></img>@{currentInstagram}</li></a>
             )
         } else return;
     }
@@ -99,12 +99,12 @@ const UserPage = () => {
 
         <div className="container d-flex flex-column align-items-center mt-5">
             {changeBackground()}
-            <img className="userPic" src={currentImage} alt="user profile pic"></img>
-            <div class="userFullName mt-3">{fullName}</div>
-            <div class="userName">@{username}</div>
+            <img className={styles.userPic} src={currentImage} alt="user profile pic"></img>
+            <div class={`mt-3 ${styles.userFullName}`}>{fullName}</div>
+            <div class={styles.userName}>@{username}</div>
 
 
-            <div className="socials__bar">
+            <div className={styles.socials__bar}>
                 {testDiscord()}
                 {testTwitter()}
                 {testInstagram()}

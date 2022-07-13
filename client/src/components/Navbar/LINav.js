@@ -1,5 +1,5 @@
 
-import './Navbar.css'
+import styles from './Navbar.module.css'
 import { React, useState } from 'react';
 import profpic from '../../assets/img/placeholder.png'
 import { Navigate } from 'react-router-dom';
@@ -40,25 +40,25 @@ const LINav = () => {
         <div>
             <nav class="navbar navbar-expand-lg navbar-light sticky-top">
                 <div class="nav__container container-fluid my-2">
-                    <a class="navbar-brand brandName" href="/">tat.cx</a>
+                    <a class={`${styles.brandName} navbar-brand`} href="/">tat.cx</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="navbar__main collapse navbar-collapse" id="navbarContent">
+                    <div class={`collapse navbar-collapse ${styles.navbar__main}`} id="navbarContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                         </ul>
-                        <ul class="navbar-nav navbar__ul">
-                            <li class="nav-item">
+                        <ul class={`navbar-nav ${styles.navbar__ul}`}>
+                            <li class={styles[`nav-item`]}>
                                 <a class="nav-link" href="/top">Top Users</a>
                             </li>
-                            <li class="nav-item">
+                            <li class={styles[`nav-item`]}>
                                 <a class="nav-link" href="/">About</a>
                             </li>
-                            <li class="nav-item d-flex flex-row align-items-center">
-                                <a class="nav-link" href={currentUsername}><img src={currentImage} className="userProfPic"></img></a>
+                            <li class={`${styles[`nav-item`]} d-flex flex-row align-items-center`}>
+                                <a class="nav-link" href={currentUsername}><img src={currentImage} className={styles.userProfPic}></img></a>
                             </li>
-                            <li class="nav-item">
+                            <li class={styles[`nav-item`]}>
                                 <a class="nav-link" href="/" onClick={logOut}>Logout</a>
                             </li>
                         </ul>
