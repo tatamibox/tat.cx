@@ -2,6 +2,9 @@
     width: 20%;
 }
 
+
+
+
 .pitch__name {
     font-weight: 600;
 }
@@ -9,8 +12,8 @@
 .pitch__img {
     width: 5rem;
     height: 5rem;
-    
-    
+
+
 }
 
 .image__container {
@@ -22,4 +25,15 @@
 
 .pitch__description {
     width: 50%;
+}
+
+@media screen and (max-width:768px) {
+    .pitch__description {
+        width: 100%;
+    }
+
+    .pitch__card {
+        width: 50%;
+        margin-bottom: 2rem;
+    }
 }

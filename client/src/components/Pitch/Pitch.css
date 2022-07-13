@@ -3,6 +3,11 @@
     width: 100%;
 }
 
+.pitch__collection {
+    margin-top: -2rem;
+    margin-bottom: 3rem;
+}
+
 .pitch__question {
     padding-top: 4rem;
     padding-bottom: 4rem;

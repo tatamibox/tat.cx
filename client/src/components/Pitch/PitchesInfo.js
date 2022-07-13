@@ -1,20 +1,22 @@
 import infographic from '../../assets/img/infographic.png'
-import greypencil from '../../assets/img/greypencil.png'
+import palette from '../../assets/img/palette.png'
+import phone from '../../assets/img/phone.png'
+import cloud from '../../assets/img/cloud.png'
 const PitchesInfo = [
     {
         name: 'Responsive',
-        description: '',
-        image: infographic
+        description: 'showcase your link on any device!',
+        image: phone
     },
     {
         name: 'Flexibility',
-        description: '',
-        image: greypencil
+        description: 'build your page to your own liking!',
+        image: palette
     },
     {
-        name: 'Responsive',
-        description: '',
-        image: ''
+        name: 'The Cloud',
+        description: 'never lose track of your own links.',
+        image: cloud
     },
     {
         name: 'Responsive',
