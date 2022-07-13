@@ -28,6 +28,8 @@
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 @media screen and (max-width: 768px) {
