@@ -20,4 +20,17 @@
 .otherUser img {
     width: 10rem;
     height: 10rem;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+
+    .otherUser {
+        width: 60%;
+    }
+
+    .otherUser img {
+        height: 10rem;
+        width: 10rem;
+    }
 }

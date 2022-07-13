@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import './UserPage.css'
 import discord from '../../assets/img/discord.png'
 import instagram from '../../assets/img/instagram.png'
@@ -9,6 +9,14 @@ const axios = require('axios');
 const UserPage = () => {
 
     const { username } = useParams();
+
+    // add a page view
+    useEffect(() => {
+        axios.put('/addPageView', { username: username })
+            .then((res) => {
+                console.log(res)
+            })
+    }, [])
 
 
     const url = '/getUserInfo';

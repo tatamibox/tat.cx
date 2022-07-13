@@ -1,6 +1,5 @@
 html {
     height: 100vh;
-    background-color: #eff7f6;
 }
 
 .topUser {
@@ -20,7 +19,7 @@ html {
 }
 
 .topUser img {
-    height: 15rem;
+    height: 17rem;
     width: 15rem;
 }
 

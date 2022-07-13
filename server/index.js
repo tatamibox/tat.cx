@@ -68,6 +68,13 @@ app.post('/login', catchAsync(async (req, res) => {
 
 }))
 
+app.put('/addPageView', catchAsync(async (req, res) => {
+    const { username } = req.body;
+    await User.findOneAndUpdate({ username: username }, { $inc: { pageVisits: 1 } })
+    const user = await User.findOne({ username: username })
+    console.log(user.pageVisits)
+}))
+
 app.get('/getTopUsers', catchAsync(async (req, res) => {
     const topUsers = await User.find().sort({ pageVisits: -1 }).collation({ locale: "en_US", numericOrdering: true });
     res.json(topUsers)
