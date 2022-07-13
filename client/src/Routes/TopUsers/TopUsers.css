@@ -1,5 +1,6 @@
-body {
+html {
     height: 100vh;
+    background-color: #eff7f6;
 }
 
 .topUser {
