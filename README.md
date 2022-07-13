@@ -4,6 +4,14 @@ https://tatpreview.herokuapp.com
 
 Example profile: https://tatpreview.herokuapp.com/tatami
 
+## Technologies Used
+- MongoDB
+- React.js
+- Express.js
+- Node.js
+- BCrypt
+- JWT
+
 ## Project Summary
 
 Tat.cx is a link showcase profile similar to that of linktr.ee. It gives you the capability of sharing your social media links on a singular
