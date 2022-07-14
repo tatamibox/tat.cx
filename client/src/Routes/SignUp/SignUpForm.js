@@ -7,29 +7,31 @@ const url = 'http://localhost:3001/signup';
 const SignUpForm = () => {
 
   const navigate = useNavigate();
-  // full name listener
+
+  //states + handlers for signup input values
   const [enteredFullName, setEnteredFullName] = useState('');
   const fullNameChangeHandler = (e) => {
     setEnteredFullName(e.target.value);
 
   }
 
-  // username listener
+
   const [enteredUsername, setEnteredUsername] = useState('');
   const usernameChangeHandler = (e) => {
     setEnteredUsername(e.target.value);
   }
 
-  // password listener
+
   const [enteredPassword, setEnteredPassword] = useState('');
   const passwordChangeHandler = (e) => {
     setEnteredPassword(e.target.value);
   }
 
-
+  // submit button handler called when submit is clicked
   const submitHandler = (e) => {
     e.preventDefault();
 
+    // posts to signup with all inputted values, then redirects user to login page
     axios.post('/signup', {
       fullName: enteredFullName,
       password: enteredPassword,

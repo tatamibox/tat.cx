@@ -25,7 +25,8 @@ const EditUserPage = () => {
 
 
 
-    //set default useState values for later reference
+    //checks if values exist on the backend, if they do it will
+    //change the states above with their existing values
     const token = window.localStorage.getItem('token')
     axios.post(infoURL, {
         token: token
@@ -55,15 +56,8 @@ const EditUserPage = () => {
             } else { setImage(placeholder) }
         })
 
-    //get user token
 
-    //pulling user info and setting useStates to those values
-
-
-    //new Value states and handlers. This is to create variables
-    //that will then be submitted to the server to edit user profile
-
-
+    //handlers and states for all new edited values on the edit form
 
     let [newFullName, setNewFullName] = useState(fullName)
     const fullNameHandler = (e) => {
@@ -137,7 +131,7 @@ const EditUserPage = () => {
         }
 
 
-
+        // updating all the past info with the new info from the edit form
         axios.put('/editUserProfile', {
 
 

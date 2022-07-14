@@ -9,6 +9,8 @@ const OtherTopUsers = (props) => {
     const [username, setUsername] = useState('username')
     const [pageVisits, setPageVisits] = useState(0)
     const [fullName, setFullName] = useState()
+
+    //changes states of current user after receiving the top 4 users (which are passed in by props.position from TopUsers.js)
     useEffect(() => {
         const arrayPosition = parseInt(props.position) - 1
         axios.get('/getTopUsers')

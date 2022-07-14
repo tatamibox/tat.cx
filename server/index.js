@@ -1,3 +1,4 @@
+//all dependencies
 const express = require('express');
 const app = express();
 const axios = require('axios');
@@ -15,7 +16,7 @@ const cookieParser = require('cookie-parser');
 const catchAsync = require('./utils/catchAsync')
 const corsOptions = {
     origin: ["URL ALLOWED", "https://tatpreview.herokuapp.com/"],
-    credentials: true,            //access-control-allow-credentials:true
+    credentials: true,
     optionSuccessStatus: 200
 }
 app.use(cors(corsOptions));
@@ -24,11 +25,13 @@ app.use(express.json());
 app.set('views', path.join(__dirname, 'views'));
 app.use(cookieParser());
 
-
+// process.env.port used for heroku integration
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server listening on 3001`);
 });
+
+
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log('Mongo connection open')
@@ -37,6 +40,10 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch(err => {
         console.log("oh no, Mongo error", err)
     })
+
+// backend for signup form --> takes inputted fullname, usernanme, password
+// and checks if user exists --> if not, will create a new user, if so then sends an error
+// also uses BCrypt to hash passwords stored in DB
 
 app.post('/signup', async (req, res) => {
     const { fullName, username, password } = req.body;
@@ -51,11 +58,13 @@ app.post('/signup', async (req, res) => {
     }
 })
 
-//login
+//login backend, checks user from inputted username, if user exists
+//then uses BCrypt compare method to unhash password and compare raw password
+//to inputted password
+// if verified, jwt token signed to the user which expires in 30d
 app.post('/login', catchAsync(async (req, res) => {
     const { username, password } = req.body;
     const currentUser = await User.findOne({ username: username });
-    console.log(currentUser)
     await bcrypt.compare(password, currentUser.password, function (err, isValid) {
         if (isValid) {
             const token = jwt.sign({ currentUser }, process.env.MY_SECRET, { expiresIn: '30d' });
@@ -68,6 +77,8 @@ app.post('/login', catchAsync(async (req, res) => {
 
 }))
 
+// runs on every user page refresh, searches the user up on
+// the database and increments pageVisits property by 1
 app.put('/addPageView', catchAsync(async (req, res) => {
     const { username } = req.body;
     await User.findOneAndUpdate({ username: username }, { $inc: { pageVisits: 1 } })
@@ -75,12 +86,15 @@ app.put('/addPageView', catchAsync(async (req, res) => {
     console.log(user.pageVisits)
 }))
 
+// sorts users based on the pageVisits variable from highest page visits to lowest page visits
+// this is used on the /top URL in order to constantly display the top 5 users at that time
 app.get('/getTopUsers', catchAsync(async (req, res) => {
     const topUsers = await User.find().sort({ pageVisits: -1 }).collation({ locale: "en_US", numericOrdering: true });
     res.json(topUsers)
 }
 ))
 
+// main sources of getting a users info, for displaying on user pages or navbars
 app.post('/userinfo', catchAsync(async (req, res) => {
     const { token } = req.body;
     const decoded = await jwt.verify(token, process.env.MY_SECRET)
@@ -94,13 +108,19 @@ app.post('/getUserInfo', catchAsync(async (req, res) => {
     const currentUser = await User.findOne({ username: username });
     res.json({ discord: currentUser.discord, username: currentUser.username, fullName: currentUser.fullName, image: currentUser.image, backgroundColor: currentUser.backgroundColor, twitter: currentUser.twitter, facebook: currentUser.facebook, instagram: currentUser.instagram });
 }))
+//
 
+
+// used to check the current users token and sees whether or not a certain
+// user has the rights to perform an action, such as editing their profile.
 app.post('/checkUserToken', catchAsync(async (req, res) => {
     const { data } = req.body;
     const decoded = await jwt.verify(data, process.env.MY_SECRET)
     res.json(decoded);
 }))
 
+// jwt token is checked to see whether or not a user has rights to edit the profile
+// if so, any inputted data will be changed on MongoDB and what is displayed on the site.
 app.put('/editUserProfile', catchAsync(async (req, res) => {
     const { username, fullName, image, bgColor, token, discord, facebook, instagram, twitter } = req.body;
     const decoded = await jwt.verify(token, process.env.MY_SECRET)
@@ -112,6 +132,9 @@ app.put('/editUserProfile', catchAsync(async (req, res) => {
     } else res.status(403).send('Invalid user. You do not have permission to edit this profile.')
 
 }))
+
+// used for HerokuApp integration, by serving anything that is typed in the url to the build index.html file. 
+// works with our React routes as well
 if (process.env.NODE_ENV === "production") {
     // Set the static assets folder (ie, client build)
     app.use(express.static('client/build'));

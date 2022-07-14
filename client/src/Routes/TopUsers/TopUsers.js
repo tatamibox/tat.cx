@@ -7,9 +7,10 @@ import OtherTopUsers from './OtherTopUsers';
 import axios from 'axios'
 
 const TopUsers = () => {
+
     const [topUser, setTopUser] = useState([])
 
-
+    //receives top user from backend, separates it into a singular object in an array
     useEffect(() => {
         axios.get('/getTopUsers')
             .then((res) => {

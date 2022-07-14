@@ -5,7 +5,8 @@ const url = '/checkUserToken';
 
 const InfographicLeft = () => {
 
-    // check whether or not user is logged in to change the status of the button on return
+    // check whether or not user is logged in to change the status of the button
+    // (if it's displaying edit profile or create profile)
 
     const token = window.localStorage.getItem('token')
     let isLoggedIn = false;
@@ -13,10 +14,11 @@ const InfographicLeft = () => {
         isLoggedIn = true;
     }
 
-    // useState for current user's username
 
     const [username, setUsername] = useState('')
-    // axios post to get current user's username in order to input onto the edit button's href
+
+    // axios post to get current user's username in order to input onto the edit button's href, also to
+    // use on the useState above
 
     axios.post(url,
         { data: token }

@@ -4,6 +4,10 @@ import styles from './LogInForm.module.css'
 const axios = require('axios');
 
 const LogInForm = () => {
+
+  //posting to login on the backend, uses inputted username &
+  //password and sends it to backend
+
   const navigate = useNavigate();
   const url = '/login';
 
@@ -17,12 +21,14 @@ const LogInForm = () => {
         navigate('/')
       })
   }
-  // username listener
+
+
+  //handlers for input forms 
   const [enteredUsername, setEnteredUsername] = useState('');
   const usernameChangeHandler = (e) => {
     setEnteredUsername(e.target.value);
   }
-  // password listener
+
   const [enteredPassword, setEnteredPassword] = useState('');
   const passwordChangeHandler = (e) => {
     setEnteredPassword(e.target.value);

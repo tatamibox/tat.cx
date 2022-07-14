@@ -8,12 +8,6 @@ const axios = require('axios')
 
 const Navbar = () => {
 
-
-
-
-
-
-
   let user = window.localStorage.getItem('token');
 
 

@@ -8,16 +8,19 @@ const axios = require('axios');
 
 const LINav = () => {
 
+    // callback which will be used to log the user out by removing their token
 
     const logOut = () => {
         window.localStorage.removeItem('token');
         Navigate('/')
     }
 
+
     const [currentImage, setCurrentImage] = useState('')
     const [currentUsername, setCurrentUsername] = useState('');
 
 
+    // posting to /userinfo in order to receive user info necessary for navbar details
 
     const url = '/userinfo';
     const token = window.localStorage.getItem('token');

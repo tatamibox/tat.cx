@@ -10,7 +10,7 @@ const UserPage = () => {
 
     const { username } = useParams();
 
-    // add a page view
+    // adds a page view on the backend
     useEffect(() => {
         axios.put('/addPageView', { username: username })
             .then((res) => {
@@ -53,6 +53,9 @@ const UserPage = () => {
             setFullName('User does not currently exist')
         })
 
+    // test... functions are used to decided whether or not to display
+    // a new list item on the userpage based on whether or not the user
+    // has one of these social media on their profile
     const testDiscord = () => {
         if (currentDiscord) {
             return (
@@ -88,7 +91,7 @@ const UserPage = () => {
         } else return;
     }
 
-
+    // changes background of user profile based on their submitted value
     const changeBackground = () => {
         if (!backgroundColor) {
             document.body.style = 'background: #eff7f6;'
